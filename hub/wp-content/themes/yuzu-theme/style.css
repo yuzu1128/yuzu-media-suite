@@ -1,0 +1,60 @@
+/*
+Theme Name: Yuzu Portfolio Theme
+Author: Antigravity
+Description: A premium, dark-mode portfolio theme for the Yuzu Media Suite.
+Version: 1.0.0
+*/
+
+:root {
+    /* Design Tokens (HSL) */
+    --citrus-gold: 45, 100%, 50%;
+    --bg-dark: 210, 20%, 10%;
+    --bg-card: 210, 20%, 15%;
+    --text-main: 0, 0%, 95%;
+    --text-dim: 0, 0%, 70%;
+    --glass-border: 210, 20%, 25%, 0.5;
+    --citrus-glow: 45, 100%, 50%, 0.3;
+}
+
+body {
+    background-color: hsl(var(--bg-dark));
+    color: hsl(var(--text-main));
+    font-family: 'Outfit', 'Inter', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Glassmorphism Utility */
+.glass-panel {
+    background: hsla(var(--bg-card), 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsla(var(--glass-border));
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px hsla(var(--citrus-glow));
+}
+
+.citrus-text {
+    color: hsl(var(--citrus-gold));
+}
+
+.btn-primary {
+    background-color: hsl(var(--citrus-gold));
+    color: black;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}

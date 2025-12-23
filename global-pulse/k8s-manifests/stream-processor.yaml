@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stream-processor
+  namespace: yuzu-pulse
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: stream-proc
+  template:
+    metadata:
+      labels:
+        app: stream-proc
+    spec:
+      containers:
+      - name: scala
+        image: yuzu/stream-processor:latest
+        env:
+        - name: KAFKA_BROKERS
+          value: "kafka-svc:9092"
+        - name: REDIS_HOST
+          value: "redis-svc"
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "1Gi"
+          requests:
+            cpu: "500m"
+            memory: "512Mi"

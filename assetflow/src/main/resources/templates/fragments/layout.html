@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">AssetFlow</title>
+    <style th:inline="css">
+        :root {
+            --primary-hsl: 45, 100%, 50%;
+            /* Yuzu Gold */
+            --bg-hsl: 210, 20%, 15%;
+            /* Dark Slate */
+            --text-hsl: 0, 0%, 90%;
+            --card-hsl: 210, 20%, 20%;
+        }
+
+        body {
+            background-color: hsl(var(--bg-hsl));
+            color: hsl(var(--text-hsl));
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 2px solid hsl(var(--primary-hsl));
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 0;
+            color: hsl(var(--primary-hsl));
+        }
+
+        .btn {
+            background-color: hsl(var(--primary-hsl));
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: hsl(var(--card-hsl));
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #444;
+        }
+
+        th {
+            color: hsl(var(--primary-hsl));
+        }
+    </style>
+</head>
+
+<body>
+    <header th:fragment="header">
+        <h1>AssetFlow</h1>
+        <nav>
+            <a href="/assets" class="btn">Assets</a>
+        </nav>
+    </header>
+</body>
+
+</html>

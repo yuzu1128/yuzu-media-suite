@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: pulse-control-api
+    runtime: ruby
+    plan: free
+    buildCommand: bundle install && bundle exec rails assets:precompile
+    startCommand: bundle exec rails server
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pulse-db
+          property: connectionString
+
+  - type: worker
+    name: pulse-analysis-worker
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: REDIS_URL
+        fromService:
+          name: pulse-redis
+          type: redis
+          property: connectionString
+
+databases:
+  - name: pulse-db
+    plan: free
+
+# Redis is used for internal microservice communication
+---
+# Note: Render Free Redis is only available for 25 days/month or similar restrictions.
+# For a 100% free permanent demo, use Upstash Redis if local Redis is insufficient.

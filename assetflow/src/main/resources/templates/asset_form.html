@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Register Asset')}"></head>
+
+<body>
+    <div th:replace="~{fragments/layout :: header}"></div>
+    <div class="container">
+        <h2>Register New Asset</h2>
+        <form th:action="@{/assets/save}" th:object="${asset}" method="post"
+            style="background: hsl(var(--card-hsl)); padding: 20px; border-radius: 8px;">
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Asset Tag</label>
+                <input type="text" th:field="*{assetTag}"
+                    style="width: 100%; padding: 8px; border: 1px solid #444; background: #333; color: white;" required>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Name</label>
+                <input type="text" th:field="*{name}"
+                    style="width: 100%; padding: 8px; border: 1px solid #444; background: #333; color: white;" required>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Category</label>
+                <select th:field="*{category}"
+                    style="width: 100%; padding: 8px; border: 1px solid #444; background: #333; color: white;">
+                    <option value="HARDWARE">Hardware</option>
+                    <option value="SOFTWARE">Software</option>
+                    <option value="FURNITURE">Furniture</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px;">Status</label>
+                <select th:field="*{status}"
+                    style="width: 100%; padding: 8px; border: 1px solid #444; background: #333; color: white;">
+                    <option value="AVAILABLE">Available</option>
+                    <option value="ASSIGNED">Assigned</option>
+                </select>
+            </div>
+            <button type="submit" class="btn" style="border: none; cursor: pointer;">Save Asset</button>
+            <a href="/assets" style="color: grey; margin-left: 10px; text-decoration: none;">Cancel</a>
+        </form>
+    </div>
+</body>
+
+</html>

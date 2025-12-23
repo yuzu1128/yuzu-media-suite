@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: yuzu-assetflow
+    runtime: java
+    plan: free
+    buildCommand: ./mvnw clean install -DskipTests
+    startCommand: java -jar target/assetflow-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: JAVA_VERSION
+        value: 21
+      - key: DB_HOST
+        fromDatabase:
+          name: yuzu-assetflow-db
+          property: host
+      - key: DB_NAME
+        fromDatabase:
+          name: yuzu-assetflow-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: yuzu-assetflow-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: yuzu-assetflow-db
+          property: password
+      - key: DB_PORT
+        fromDatabase:
+          name: yuzu-assetflow-db
+          property: port
+
+databases:
+  - name: yuzu-assetflow-db
+    plan: free
+    region: singapore
