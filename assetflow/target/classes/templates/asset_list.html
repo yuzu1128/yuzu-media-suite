@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Asset List')}"></head>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<body>
+    <div th:replace="~{fragments/layout :: header}"></div>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2>Registered Assets</h2>
+            <a href="/assets/new" class="btn">Register New Asset</a>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <input type="text" id="assetSearch" placeholder="Search by name or tag..."
+                style="width: 100%; padding: 10px; border: 1px solid #444; background: #222; color: white;">
+        </div>
+        <table id="assetTable">
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Assigned To</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="asset : ${assets}">
+                    <td th:text="${asset.assetTag}">PC-001</td>
+                    <td th:text="${asset.name}">Laptop</td>
+                    <td th:text="${asset.category}">Hardware</td>
+                    <td th:text="${asset.status}">Available</td>
+                    <td
+                        th:text="${asset.assignedToUserId != null ? 'User ID: ' + asset.assignedToUserId : 'Unassigned'}">
+                        User</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#assetSearch").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#assetTable tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
