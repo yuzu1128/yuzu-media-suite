@@ -9,8 +9,8 @@
         <div style="margin-bottom: 2rem; text-align: center;">
             <p
                 style="color: var(--primary); margin: 0; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">
-                Management</p>
-            <h2 th:text="${asset.id == null ? 'Register New Asset' : 'Edit Asset'}">Register New Asset</h2>
+                Asset Flow Management</p>
+            <h2 th:text="${asset.id == null ? '新規資産登録' : '資産情報を編集'}">新規資産登録</h2>
         </div>
 
         <div class="glass-card">
@@ -18,42 +18,42 @@
                 <input type="hidden" th:field="*{id}">
 
                 <div class="form-group">
-                    <label for="assetTag">Asset Tag / Serial Number</label>
-                    <input type="text" id="assetTag" th:field="*{assetTag}" placeholder="e.g. PC-2025-001" required>
+                    <label for="assetTag">資産タグ / シリアル番号</label>
+                    <input type="text" id="assetTag" th:field="*{assetTag}" placeholder="例: PC-2025-001" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Asset Name</label>
-                    <input type="text" id="name" th:field="*{name}" placeholder="e.g. MacBook Pro M3" required>
+                    <label for="name">資産名称</label>
+                    <input type="text" id="name" th:field="*{name}" placeholder="例: MacBook Pro M3" required>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                     <div class="form-group">
-                        <label for="category">Category</label>
+                        <label for="category">カテゴリ</label>
                         <select id="category" th:field="*{category}">
-                            <option value="HARDWARE">Hardware</option>
-                            <option value="SOFTWARE">Software</option>
-                            <option value="FURNITURE">Furniture</option>
-                            <option value="ELECTRONICS">Electronics</option>
+                            <option value="HARDWARE">ハードウェア</option>
+                            <option value="SOFTWARE">ソフトウェア</option>
+                            <option value="FURNITURE">備品・什器</option>
+                            <option value="ELECTRONICS">周辺機器</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="status">Initial Status</label>
+                        <label for="status">初期ステータス</label>
                         <select id="status" th:field="*{status}">
-                            <option value="AVAILABLE">Available</option>
-                            <option value="ASSIGNED">Assigned</option>
-                            <option value="MAINTENANCE">Maintenance</option>
+                            <option value="AVAILABLE">利用可能</option>
+                            <option value="ASSIGNED">割当済</option>
+                            <option value="MAINTENANCE">メンテナンス中</option>
                         </select>
                     </div>
                 </div>
 
                 <div style="margin-top: 2rem; display: flex; gap: 1rem;">
                     <button type="submit" class="btn btn-primary" style="flex: 2; justify-content: center;">
-                        Save Asset Changes
+                        資産情報を保存
                     </button>
                     <a href="/assets" class="btn btn-outline" style="flex: 1; justify-content: center;">
-                        Cancel
+                        キャンセル
                     </a>
                 </div>
             </form>

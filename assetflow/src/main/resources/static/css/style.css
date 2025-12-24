@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Outfit:wght@300;400;600;700&display=swap');
 
 :root {
     --primary: #FFD700;
@@ -20,7 +20,7 @@ body {
     background: radial-gradient(circle at top right, #1a2533, #0A0F14);
     background-attachment: fixed;
     color: var(--text-bright);
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Noto Sans JP', 'Outfit', sans-serif;
     line-height: 1.6;
     min-height: 100vh;
 }

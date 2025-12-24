@@ -11,29 +11,30 @@
             <div>
                 <p
                     style="color: var(--primary); margin: 0; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">
-                    Inventory</p>
-                <h2>Registered Assets</h2>
+                    Enterprise Asset Management</p>
+                <h2>資産管理システム</h2>
+                <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.95rem;">
+                    企業内のハードウェアやライセンスを一元管理。割当状況やステータスを追跡します。</p>
             </div>
             <a href="/assets/new" class="btn btn-primary">
-                <span style="font-size: 1.2rem;">+</span> Register New Asset
+                <span style="font-size: 1.2rem;">+</span> 新規資産を登録
             </a>
         </div>
 
         <div class="search-wrapper">
             <span class="search-icon">🔍</span>
-            <input type="text" id="assetSearch" class="search-input"
-                placeholder="Search by asset name, tag, or category...">
+            <input type="text" id="assetSearch" class="search-input" placeholder="資産名、タグ、カテゴリで検索...">
         </div>
 
         <div class="glass-card" style="padding: 1rem;">
             <table id="assetTable">
                 <thead>
                     <tr>
-                        <th>Asset Tag</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Status</th>
-                        <th>Assignment</th>
+                        <th>資産タグ</th>
+                        <th>名称</th>
+                        <th>カテゴリ</th>
+                        <th>ステータス</th>
+                        <th>割当状況</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,16 +48,16 @@
                         <td>
                             <span class="status-pill"
                                 th:classappend="${asset.status == 'AVAILABLE' ? 'status-available' : 'status-assigned'}"
-                                th:text="${asset.status}">AVAILABLE</span>
+                                th:text="${asset.status == 'AVAILABLE' ? '利用可能' : (asset.status == 'ASSIGNED' ? '割当済' : asset.status)}">利用可能</span>
                         </td>
                         <td style="font-size: 0.9rem;">
                             <span th:if="${asset.assignedToUserId != null}">
-                                👤 User ID: <span th:text="${asset.assignedToUserId}"
+                                👤 ユーザーID: <span th:text="${asset.assignedToUserId}"
                                     style="color: var(--primary);">123</span>
                             </span>
                             <span th:unless="${asset.assignedToUserId != null}"
                                 style="color: var(--text-muted); opacity: 0.6;">
-                                ⚪ Unassigned
+                                ⚪ 未割当
                             </span>
                         </td>
                     </tr>
