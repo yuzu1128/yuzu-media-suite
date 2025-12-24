@@ -1,0 +1,22 @@
+# Java
+target/
+*.class
+
+# Ruby / Rails
+log/
+tmp/
+/public/assets
+.env*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node / Vue
+node_modules/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
