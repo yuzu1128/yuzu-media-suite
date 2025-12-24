@@ -59,3 +59,8 @@ services:
 databases:
   - name: yuzu-suite-db
     plan: free
+
+redis:
+  - name: yuzu-redis
+      plan: free
+      
