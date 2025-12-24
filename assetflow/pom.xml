@@ -88,6 +88,9 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
+					<compilerArgs>
+						<arg>-Adoma.resources.dir=${project.basedir}/src/main/resources</arg>
+					</compilerArgs>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
