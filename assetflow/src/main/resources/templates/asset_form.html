@@ -5,40 +5,59 @@
 
 <body>
     <div th:replace="~{fragments/layout :: header}"></div>
-    <div class="container">
-        <h2>Register New Asset</h2>
-        <form th:action="@{/assets/save}" th:object="${asset}" method="post"
-            style="background: hsl(var(--card-hsl)); padding: 20px; border-radius: 8px;">
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px;">Asset Tag</label>
-                <input type="text" th:field="*{assetTag}"
-                    style="width: 100%; padding: 8px; border: 1px solid #444; background: #333; color: white;" required>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px;">Name</label>
-                <input type="text" th:field="*{name}"
-                    style="width: 100%; padding: 8px; border: 1px solid #444; background: #333; color: white;" required>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px;">Category</label>
-                <select th:field="*{category}"
-                    style="width: 100%; padding: 8px; border: 1px solid #444; background: #333; color: white;">
-                    <option value="HARDWARE">Hardware</option>
-                    <option value="SOFTWARE">Software</option>
-                    <option value="FURNITURE">Furniture</option>
-                </select>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px;">Status</label>
-                <select th:field="*{status}"
-                    style="width: 100%; padding: 8px; border: 1px solid #444; background: #333; color: white;">
-                    <option value="AVAILABLE">Available</option>
-                    <option value="ASSIGNED">Assigned</option>
-                </select>
-            </div>
-            <button type="submit" class="btn" style="border: none; cursor: pointer;">Save Asset</button>
-            <a href="/assets" style="color: grey; margin-left: 10px; text-decoration: none;">Cancel</a>
-        </form>
+    <div class="container" style="max-width: 600px;">
+        <div style="margin-bottom: 2rem; text-align: center;">
+            <p
+                style="color: var(--primary); margin: 0; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">
+                Management</p>
+            <h2 th:text="${asset.id == null ? 'Register New Asset' : 'Edit Asset'}">Register New Asset</h2>
+        </div>
+
+        <div class="glass-card">
+            <form th:action="@{/assets/save}" th:object="${asset}" method="post">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group">
+                    <label for="assetTag">Asset Tag / Serial Number</label>
+                    <input type="text" id="assetTag" th:field="*{assetTag}" placeholder="e.g. PC-2025-001" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Asset Name</label>
+                    <input type="text" id="name" th:field="*{name}" placeholder="e.g. MacBook Pro M3" required>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" th:field="*{category}">
+                            <option value="HARDWARE">Hardware</option>
+                            <option value="SOFTWARE">Software</option>
+                            <option value="FURNITURE">Furniture</option>
+                            <option value="ELECTRONICS">Electronics</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Initial Status</label>
+                        <select id="status" th:field="*{status}">
+                            <option value="AVAILABLE">Available</option>
+                            <option value="ASSIGNED">Assigned</option>
+                            <option value="MAINTENANCE">Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 2; justify-content: center;">
+                        Save Asset Changes
+                    </button>
+                    <a href="/assets" class="btn btn-outline" style="flex: 1; justify-content: center;">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 

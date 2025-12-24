@@ -7,36 +7,62 @@
 <body>
     <div th:replace="~{fragments/layout :: header}"></div>
     <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h2>Registered Assets</h2>
-            <a href="/assets/new" class="btn">Register New Asset</a>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
+            <div>
+                <p
+                    style="color: var(--primary); margin: 0; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">
+                    Inventory</p>
+                <h2>Registered Assets</h2>
+            </div>
+            <a href="/assets/new" class="btn btn-primary">
+                <span style="font-size: 1.2rem;">+</span> Register New Asset
+            </a>
         </div>
-        <div style="margin-bottom: 10px;">
-            <input type="text" id="assetSearch" placeholder="Search by name or tag..."
-                style="width: 100%; padding: 10px; border: 1px solid #444; background: #222; color: white;">
+
+        <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="assetSearch" class="search-input"
+                placeholder="Search by asset name, tag, or category...">
         </div>
-        <table id="assetTable">
-            <thead>
-                <tr>
-                    <th>Tag</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Assigned To</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="asset : ${assets}">
-                    <td th:text="${asset.assetTag}">PC-001</td>
-                    <td th:text="${asset.name}">Laptop</td>
-                    <td th:text="${asset.category}">Hardware</td>
-                    <td th:text="${asset.status}">Available</td>
-                    <td
-                        th:text="${asset.assignedToUserId != null ? 'User ID: ' + asset.assignedToUserId : 'Unassigned'}">
-                        User</td>
-                </tr>
-            </tbody>
-        </table>
+
+        <div class="glass-card" style="padding: 1rem;">
+            <table id="assetTable">
+                <thead>
+                    <tr>
+                        <th>Asset Tag</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Assignment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="asset : ${assets}">
+                        <td><span class="tag-badge" th:text="${asset.assetTag}">PC-2025-001</span></td>
+                        <td>
+                            <div style="font-weight: 600;" th:text="${asset.name}">MacBook Pro M3</div>
+                        </td>
+                        <td style="color: var(--text-muted); font-size: 0.9rem;" th:text="${asset.category}">HARDWARE
+                        </td>
+                        <td>
+                            <span class="status-pill"
+                                th:classappend="${asset.status == 'AVAILABLE' ? 'status-available' : 'status-assigned'}"
+                                th:text="${asset.status}">AVAILABLE</span>
+                        </td>
+                        <td style="font-size: 0.9rem;">
+                            <span th:if="${asset.assignedToUserId != null}">
+                                👤 User ID: <span th:text="${asset.assignedToUserId}"
+                                    style="color: var(--primary);">123</span>
+                            </span>
+                            <span th:unless="${asset.assignedToUserId != null}"
+                                style="color: var(--text-muted); opacity: 0.6;">
+                                ⚪ Unassigned
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
