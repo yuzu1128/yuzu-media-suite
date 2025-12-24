@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>21</java.version>
 		<doma.version>2.53.2</doma.version>
+		<doma-spring-boot.version>1.8.0</doma-spring-boot.version>
 	</properties>
 
 	<dependencies>
@@ -32,21 +33,27 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+		<!-- DOMA 2 Core for Java -->
 		<dependency>
 			<groupId>org.seasar.doma</groupId>
-			<artifactId>doma-kotlin</artifactId>
+			<artifactId>doma-core</artifactId>
 			<version>${doma.version}</version>
 		</dependency>
-		<!-- Note: Using doma-processor for annotation processing -->
+		<!-- DOMA Spring Boot integration -->
 		<dependency>
-			<groupId>org.seasar.doma</groupId>
-			<artifactId>doma-processor</artifactId>
-			<version>${doma.version}</version>
-			<scope>provided</scope>
+			<groupId>org.seasar.doma.boot</groupId>
+			<artifactId>doma-spring-boot-starter</artifactId>
+			<version>${doma-spring-boot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- H2 for development/demo -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -85,7 +92,7 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>${lombok.version}</version>
+							<version>1.18.30</version>
 						</path>
 						<path>
 							<groupId>org.seasar.doma</groupId>
