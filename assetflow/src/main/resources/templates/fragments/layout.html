@@ -9,11 +9,23 @@
 </head>
 
 <body>
-    <header th:fragment="header">
+    <header th:fragment="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <a href="/" class="logo">AssetFlow</a>
         <nav class="nav-links">
-            <a href="/assets" class="btn btn-outline">資産一覧</a>
-            <a href="/assets/new" class="btn btn-primary">資産登録</a>
+            <div sec:authorize="isAuthenticated()" style="display: flex; align-items: center; gap: 1.5rem;">
+                <span style="color: var(--text-muted); font-size: 0.9rem;">
+                    👤 <span sec:authentication="name" style="color: var(--primary); font-weight: 600;">User</span>
+                </span>
+                <a href="/assets" class="btn btn-outline">資産一覧</a>
+                <a href="/assets/new" class="btn btn-primary">資産登録</a>
+                <form th:action="@{/logout}" method="post" style="margin: 0;">
+                    <button type="submit" class="btn btn-outline"
+                        style="padding: 0.5rem 1rem; font-size: 0.85rem; opacity: 0.8;">ログアウト</button>
+                </form>
+            </div>
+            <div sec:authorize="!isAuthenticated()">
+                <a href="/login" class="btn btn-primary">ログイン</a>
+            </div>
         </nav>
     </header>
 </body>

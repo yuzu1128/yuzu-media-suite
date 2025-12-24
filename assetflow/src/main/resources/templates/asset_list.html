@@ -21,6 +21,30 @@
             </a>
         </div>
 
+        <!-- DASHBOARD STATS SECTION -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="glass-card" style="padding: 1.5rem; margin-bottom: 0;">
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">総資産数</p>
+                <h3 style="font-size: 2rem; margin: 0.5rem 0;" th:text="${totalCount}">0</h3>
+                <div style="font-size: 0.75rem; color: var(--primary);">Assets Tracked</div>
+            </div>
+            <div class="glass-card" style="padding: 1.5rem; margin-bottom: 0; border-left: 4px solid var(--success);">
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">利用可能</p>
+                <h3 style="font-size: 2rem; margin: 0.5rem 0; color: #68D391;" th:text="${availableCount}">0</h3>
+                <div style="font-size: 0.75rem; color: #68D391;">Ready for Use</div>
+            </div>
+            <div class="glass-card" style="padding: 1.5rem; margin-bottom: 0; border-left: 4px solid var(--accent);">
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">割当済</p>
+                <h3 style="font-size: 2rem; margin: 0.5rem 0; color: #FF8787;" th:text="${assignedCount}">0</h3>
+                <div style="font-size: 0.75rem; color: #FF8787;">In Operation</div>
+            </div>
+            <div class="glass-card" style="padding: 1.5rem; margin-bottom: 0;">
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">ハードウェア</p>
+                <h3 style="font-size: 2rem; margin: 0.5rem 0;" th:text="${hardwareCount}">0</h3>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">DEVICES</div>
+            </div>
+        </div>
+
         <div class="search-wrapper">
             <span class="search-icon">🔍</span>
             <input type="text" id="assetSearch" class="search-input" placeholder="資産名、タグ、カテゴリで検索...">

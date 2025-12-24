@@ -19,7 +19,19 @@ public class AssetController {
     @GetMapping
     public String listAssets(Model model) {
         List<Asset> assets = assetService.getAllAssets();
+
+        // Compute "Pro" Dashboard Metrics
+        long total = assets.size();
+        long available = assets.stream().filter(a -> "AVAILABLE".equals(a.getStatus())).count();
+        long assigned = assets.stream().filter(a -> "ASSIGNED".equals(a.getStatus())).count();
+        long hardware = assets.stream().filter(a -> "HARDWARE".equals(a.getCategory())).count();
+
         model.addAttribute("assets", assets);
+        model.addAttribute("totalCount", total);
+        model.addAttribute("availableCount", available);
+        model.addAttribute("assignedCount", assigned);
+        model.addAttribute("hardwareCount", hardware);
+
         return "asset_list";
     }
 

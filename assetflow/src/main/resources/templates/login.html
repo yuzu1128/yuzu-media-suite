@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('ログイン')}"></head>
+
+<body>
+    <div class="container" style="max-width: 450px; margin-top: 10vh;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div
+                style="width: 60px; height: 60px; background: var(--primary); border-radius: 15px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem; box-shadow: 0 0 20px var(--primary-glow);">
+                <span style="font-size: 2rem; color: #000;">🔐</span>
+            </div>
+            <h2 style="font-size: 2.2rem;">AssetFlow Login</h2>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">認証情報を入力して資産管理ダッシュボードへ</p>
+        </div>
+
+        <div class="glass-card">
+            <div th:if="${param.error}"
+                style="background: rgba(255, 107, 107, 0.15); color: #FF8787; padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; text-align: center; font-size: 0.9rem; border: 1px solid rgba(255, 107, 107, 0.3);">
+                ユーザー名またはパスワードが正しくありません。
+            </div>
+            <div th:if="${param.logout}"
+                style="background: rgba(72, 187, 120, 0.15); color: #68D391; padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; text-align: center; font-size: 0.9rem; border: 1px solid rgba(72, 187, 120, 0.3);">
+                ログアウトしました。
+            </div>
+
+            <form th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" id="username" name="username" placeholder="admin" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary"
+                        style="width: 100%; justify-content: center; padding: 1rem;">
+                        ログイン
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 2rem;">
+            &copy; 2025 Yuzu Media Suite - AssetFlow
+        </p>
+    </div>
+</body>
+
+</html>
