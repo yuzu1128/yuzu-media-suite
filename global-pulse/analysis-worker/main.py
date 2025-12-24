@@ -4,12 +4,14 @@ import os
 
 app = FastAPI(title="Yuzu Global Pulse Analysis Worker")
 
-# Redis connection for real-time task ingestion
-r = redis.Redis(
-    host=os.getenv("REDIS_HOST", "localhost"),
-    port=int(os.getenv("REDIS_PORT", 6379)),
-    db=0
-)
+# Redis connection for real-time task ingestion (optional on free tier)
+redis_url = os.getenv("REDIS_URL", "")
+r = None
+if redis_url:
+    try:
+        r = redis.from_url(redis_url)
+    except Exception:
+        pass  # Gracefully degrade without Redis
 
 @app.get("/health")
 def health():

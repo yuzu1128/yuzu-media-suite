@@ -4,8 +4,8 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock ./
-RUN bundle install
+COPY Gemfile ./
+RUN bundle lock --add-platform x86_64-linux && bundle install
 
 COPY . .
 

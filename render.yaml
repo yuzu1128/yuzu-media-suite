@@ -51,10 +51,7 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: REDIS_URL
-        fromService:
-          name: yuzu-redis
-          type: redis
-          property: connectionString
+        value: ""  # Optional: Uses in-memory fallback on free tier
 
 databases:
   - name: yuzu-suite-db
