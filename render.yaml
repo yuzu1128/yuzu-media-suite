@@ -2,11 +2,9 @@ services:
   # --- AssetFlow (Project 1) ---
   - type: web
     name: yuzu-assetflow
-    runtime: java
+    runtime: docker
     plan: free
     rootDir: assetflow
-    buildCommand: ./mvnw clean install -DskipTests
-    startCommand: java -jar target/assetflow-0.0.1-SNAPSHOT.jar
     envVars:
       - key: JAVA_VERSION
         value: 21
